@@ -17,4 +17,3 @@
     (sucre              100)  ; en grammes
   )
 )
-
