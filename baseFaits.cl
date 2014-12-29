@@ -7,6 +7,7 @@
   '(
     (chocolatTablette   450)  ; en grammes
     (cremeFraiche       250)  ; en grammes
+    (cremeAnglaise      0)    ; en millilitres
     (lait               1000) ; en millilitres
     (oeufs              9)    ; en unités
     (oeufsBlancs        0)    ; en unités
