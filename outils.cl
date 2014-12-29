@@ -21,3 +21,14 @@
 (defun premisseValideBf (premisse bf)
   (>= (getValeurBf (getAttribut premisse) bf) (getValeur premisse))
 )
+
+(defun premissesValideETBf (premisses bf)
+  (let ((valide T))
+    (loop for premisse in premisses do
+      (if (not (premisseValideBf premisse bf))
+        (setq valide nil)
+      )
+    )
+    valide
+  )
+)
