@@ -4,10 +4,10 @@
 (load "outils.cl")
 
 (defun chainageAvant (bfInitiale br but chemin)
-  (let (retour retourTmp (bf (copy-tree bfInitiale)))
+  (let (retour retourTmp trouve (regle (car br)) (bf (copy-tree bfInitiale)))
     (if (premissesValideETBf but bf)
       (setq retour chemin)
-      (loop for regle in br do
+      (loop while (and (not trouve) regle) do
         (if (premissesValideETBf (getPremisses (eval regle)) bf)
           (progn
             (appliquerRegleBf (eval regle) bf)
@@ -18,6 +18,7 @@
             )
           )
         )
+        (setq regle (cadr (member regle br)))
       )
     )
     retour
