@@ -32,3 +32,24 @@
     valide
   )
 )
+
+(defun appliquerRegleBf (regle bf)
+  (loop for premisse in (getPremisse regle) do
+    (appliquerPremisseBf premisse bf)
+  )
+  (loop for conclusion in (getConclusion regle) do
+    (appliquerConclusionBf conclusion bf)
+  )
+)
+
+(defun appliquerPremisseBf (premisse bf)
+  (let ((fait (assoc (car premisse) bf)))
+    (setf (cadr fait) (- (cadr fait) (cadr premisse)))
+  )
+)
+
+(defun appliquerConclusionBf (conclusion bf)
+  (let ((fait (assoc (car conclusion) bf)))
+    (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
+  )
+)
