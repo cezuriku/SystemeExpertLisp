@@ -20,27 +20,6 @@
   )
 )
 
-; Méthode destructive sur bf
-(defun mettreAJourButBf (but bf)
-  (loop for premisse in but do
-    (if (premisseAppartientBf premisse bf)
-      (progn
-        (mettreAJourPremisseBf premisse bf)
-        (setq but (delete premisse but))
-      )
-    )
-  )
-  but
-)
-
-; Méthode destructive sans vérification qui modifie la base de faits
-; en retirant le nécéssaire de la prémisse
-(defun mettreAJourPremisseBf (premisse bf)
-  (let ((fait (assoc (car premisse) bf)))
-    (setf (cadr fait) (- (cadr fait) (cadr premisse)))
-  )
-)
-
 (defun butAppartientConclusionRegle (but regle)
   (let (reussi)
     (loop for premisse in but do
