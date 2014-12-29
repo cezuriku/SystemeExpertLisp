@@ -9,6 +9,8 @@
     (cremeFraiche       250)  ; en grammes
     (lait               1000) ; en millilitres
     (oeufs              9)    ; en unités
+    (oeufsBlancs        0)    ; en unités
+    (oeufsJaunes        0)    ; en unités
     (raisinsSecs        60)   ; en grammes
     (rhum               150)  ; en millilitres
     (sucre              100)  ; en grammes
