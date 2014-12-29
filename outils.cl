@@ -1,8 +1,8 @@
-(defun getPremisse (regle)
+(defun getPremisses (regle)
   (cadr regle) 
 )
 
-(defun getConclusion (regle)
+(defun getConclusions (regle)
   (car regle) 
 )
 
@@ -34,10 +34,10 @@
 )
 
 (defun appliquerRegleBf (regle bf)
-  (loop for premisse in (getPremisse regle) do
+  (loop for premisse in (getPremisses regle) do
     (appliquerPremisseBf premisse bf)
   )
-  (loop for conclusion in (getConclusion regle) do
+  (loop for conclusion in (getConclusions regle) do
     (appliquerConclusionBf conclusion bf)
   )
 )
