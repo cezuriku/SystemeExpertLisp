@@ -1,4 +1,5 @@
 (load "chainageArriere.cl")
+(load "baseRegles.cl")
 
 (let* (
     (bfTEST
@@ -13,6 +14,7 @@
         (raisinsSecs        60)   ; en grammes
         (rhum               150)  ; en millilitres
         (sucre              100)  ; en grammes
+        (pain               0)    ; en grammes
       )
     )
     (premisseVrai1    '(chocolatTablette 100))
@@ -61,6 +63,36 @@
     (if (not but)
       (print "Test 7-2 reussi")
       (print "Test 7-2 échoué : but non mis à jour")
+    )
+  )
+  (let ((bf (copy-tree bfTEST)) (but '((cremeAnglaise 10))) reussi)
+    (if (not (butAppartientBf but bf))
+      (print "Test 8-1 reussi")
+      (print "Test 8-1 échoué : butFaux validé")
+    )
+    (loop for regle in *br* do
+      (if (butAppartientConclusionRegle but (eval regle))
+        (setq reussi T)
+      )
+    )
+    (if reussi
+      (print "Test 8-2 reussi")
+      (print "Test 8-2 échoué : butAppartientConclusionRegle non validé")
+    )
+  )
+  (let ((bf (copy-tree bfTEST)) (but '((pain 10))) reussi)
+    (if (not (butAppartientBf but bf))
+      (print "Test 9-1 reussi")
+      (print "Test 9-1 échoué : butFaux validé")
+    )
+    (loop for regle in *br* do
+      (if (butAppartientConclusionRegle but (eval regle))
+        (setq reussi T)
+      )
+    )
+    (if (not reussi)
+      (print "Test 9-2 reussi")
+      (print "Test 9-2 échoué : butAppartientConclusionRegle faux validé")
     )
   )
 )

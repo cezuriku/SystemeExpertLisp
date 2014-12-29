@@ -4,8 +4,17 @@
 
 (defun chainageArriere (bf br but)
   (let (reussi chemins)
-    (if (butAppartientBf but bf)
+    (setq but (mettreAJourButBf but bf))
+    
+    (if (eq but nil)
       (setq reussi T)
+      (progn
+        (loop for regle in br do
+          (if (butAppartientConclusionRegle but (eval regle))
+            (push regle chemins)
+          )
+        )
+      )
     )
     reussi
   )
@@ -29,6 +38,19 @@
 (defun mettreAJourPremisseBf (premisse bf)
   (let ((fait (assoc (car premisse) bf)))
     (setf (cadr fait) (- (cadr fait) (cadr premisse)))
+  )
+)
+
+(defun butAppartientConclusionRegle (but regle)
+  (let (reussi)
+    (loop for premisse in but do
+      (loop for conclusion in (car regle) do
+        (if (eq (car premisse) (car conclusion))
+          (setq reussi T)
+        )
+      )
+    )
+    reussi
   )
 )
 
