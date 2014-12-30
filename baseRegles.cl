@@ -19,8 +19,13 @@
       (cremeFraiche 250) (cremeAnglaise 1365))
 ))
 
+(defparameter *r4* '(
+  ((desserts 1))
+  ((ganacheAuChocolat 1))
+))
+
 (defparameter *br*
   '(
-    *r1* *r2* *r3*
+    *r1* *r2* *r3* *r4*
   )
 )

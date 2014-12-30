@@ -5,6 +5,9 @@
 
 (defparameter *bf*
   '(
+    (entrees            0)    ; en parts
+    (plats              0)    ; en parts
+    (desserts           0)    ; en parts
     (chocolatTablette   450)  ; en grammes
     (cremeAnglaise      0)    ; en millilitres
     (cremeFraiche       250)  ; en grammes
