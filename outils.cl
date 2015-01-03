@@ -1,9 +1,11 @@
 (defun getPremisses (regle)
-  (cadr regle) 
+  "Récupère les premisses d'une règle"
+  (cadr (eval regle))
 )
 
 (defun getConclusions (regle)
-  (car regle) 
+  "Récupère les conclusions d'une règle"
+  (car (eval regle))
 )
 
 (defun getAttribut (premisse)
@@ -16,6 +18,19 @@
 
 (defun getValeurBf (attribut bf)
   (cadr (assoc attribut bf))
+)
+
+(defun getReglesPour (attribut br)
+  (let (listeRegles)
+    (loop for regle in br do
+      (loop for conclusion in (getConclusions regle) do
+        (if (eq (getAttribut conclusion) attribut)
+          (push regle listeRegles)
+        )
+      )
+    )
+    listeRegles
+  )
 )
 
 (defun premisseValideBf (premisse bf)

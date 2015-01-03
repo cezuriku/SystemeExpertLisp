@@ -8,9 +8,9 @@
     (if (premissesValideETBf but bf)
       (setq retour chemin)
       (loop while (and (not trouve) regle) do
-        (if (premissesValideETBf (getPremisses (eval regle)) bf)
+        (if (premissesValideETBf (getPremisses regle) bf)
           (progn
-            (appliquerRegleBf (eval regle) bf)
+            (appliquerRegleBf regle bf)
             (push regle chemin)
             (setq retourTmp (chainageAvant bf br but chemin))
             (if retourTmp
