@@ -3,6 +3,13 @@
   C'est elle qui informe de ce que l'on peut faire et à partir de quoi.
 |#
 
+; On liste l'ensemble des règles dans une variable
+(defparameter *br*
+  '(
+    *r1* *r2* *r3* *r4* *r5* *r6* *r7* *r8* *r9*
+  )
+)
+
 (defparameter *r1* '(
   ((oeufsBlancs 1) (oeufsJaunes 1))
   ((oeufs 1))
@@ -42,7 +49,7 @@
 
 (defparameter *r7* '(
  ((flanDeHuitres 4))
- ((huitres 24) (oeufs 4) (lait 500) (estragon 1) )
+ ((huitres 24) (oeufs 4) (lait 500) (estragon 1))
   "Pour les flan d'huitres : Ouvrez les 24 huitres, retirez-les de leur coquille. Montez a ebullition et pochez 2mn. Egouttez puis passez ces huitres au mixeur. Battez les 4 oeufs et 500ml de lait, verser la creme d'huitres. Salez, Poivrez, ajoutez une branche d'estragon hachee, juste ce qu'il faut pour parfumer.Versez dans chaque coquille l'appareil a flan. Faites cuire au four pendant 15 mn. Servez chaud."
 ))
 
@@ -57,9 +64,3 @@
   ((flanDeHuitres 6) (baronDeLapin 1) (ganacheAuChocolat 1))  
   "Pour faire un menu complet : Commencez par le flan de huitres en entrée, ensuite un baron de lapin pour le plat de résistance et utilisez une part de ganache au chocolat en dessert"
 ))
-            
-(defparameter *br*
-  '(
-    *r1* *r2* *r3* *r4* *r5* *r6* *r7* *r8* *r9*
-  )
-)
