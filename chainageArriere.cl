@@ -1,54 +1,31 @@
 #|
 
 |#
+(load "outils.cl")
 
-(defun chainageArriere (bf br but)
-  (let (reussi chemins)
-    (setq but (mettreAJourButBf but bf))
-    
-    (if (eq but nil)
-      (setq reussi T)
-      (progn
-        (loop for regle in br do
-          (if (butAppartientConclusionRegle but (eval regle))
-            (push regle chemins)
+(defun chainageArriere (bf br butInital chemin)
+  (print butInital)
+  (if (premissesValideETBf butInital bf)
+    T
+    (let (retour retourTmp trouve (premisse (car butInital)) (but (copy-tree butInital)))
+      (loop while (and (not trouve) premisse) do
+        (loop for regle in (getReglesPour (getAttribut premisse) br) do
+          (setq but (appliquerRegleBut regle but))
+          (push regle chemin)
+          (setq retourTmp (chainageArriere bf br but chemin))
+          (if retourTmp
+            (progn
+              (setq trouve T)
+              (if (eq T retourTmp)
+                (setq retour chemin)
+                (setq retour retourTmp)
+              )
+            )
           )
         )
+        (setq premisse (cadr (member premisse butInital)))
       )
+      retour
     )
-    reussi
-  )
-)
-
-(defun butAppartientConclusionRegle (but regle)
-  (let (reussi)
-    (loop for premisse in but do
-      (loop for conclusion in (car regle) do
-        (if (eq (car premisse) (car conclusion))
-          (setq reussi T)
-        )
-      )
-    )
-    reussi
-  )
-)
-
-(defun butAppartientBf (but bf)
-  (let ((reussi T))
-    (loop for premisse in but do
-      (if (not (premisseAppartientBf premisse bf))
-        (setq reussi nil)
-      )
-    )
-    reussi
-  )
-)
-
-(defun premisseAppartientBf (premisse bf)
-  (let ((fait (assoc (car premisse) bf)) reussi)
-    (if (>= (cadr fait) (cadr premisse))
-      (setq reussi T)
-    )
-    reussi
   )
 )
