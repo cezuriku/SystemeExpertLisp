@@ -38,6 +38,21 @@
   )
 )
 
+(defun getReglesPourBut (but br)
+  (let (listeRegles)
+    (loop for premisse in but do
+      (if (> (getValeur premisse) 0)
+        (loop for regle in (getReglesPour (getAttribut premisse) br) do
+          (if (not (member regle listeRegles))
+            (push regle listeRegles)
+          )
+        )
+      )
+    )
+    listeRegles
+  )
+)
+
 (defun premisseValideBf (premisse bf)
   (if (getValeurBf (getAttribut premisse) bf)
     (>= (getValeurBf (getAttribut premisse) bf) (getValeur premisse))
@@ -76,7 +91,7 @@
   (let ((fait (assoc (car conclusion) bf)))
     (if fait
       (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
-      (push conclusion bf)
+      (push (copy-tree conclusion) but)
     )
   )
   bf
@@ -96,7 +111,7 @@
   (let ((fait (assoc (car premisse) but)))
     (if fait
       (setf (cadr fait) (+ (cadr fait) (cadr premisse)))
-      (push premisse but)
+      (push (copy-tree premisse) but)
     )
   )
   but

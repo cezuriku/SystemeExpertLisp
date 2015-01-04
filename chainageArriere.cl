@@ -30,3 +30,35 @@
     )
   )
 )
+
+(defun chainageArriere2 (bf br butInitial)
+  (if (premissesValideETBf butInitial bf)
+    T
+    (let (retour (listeRegles (getReglesPourBut butInitial br))
+            but regles but)
+      (loop while (and listeRegles (not retour)) do
+        (setq regles (pop listeRegles))
+        (setq but (copy-tree butInitial))
+        (if (listp regles)
+          (loop for regle in regles do
+            (setq but (appliquerRegleBut regle but))
+          )
+          (setq but (appliquerRegleBut regles but))
+        )
+        (if (premissesValideETBf but bf)
+          (progn 
+          (setq retour regles))
+          (if (listp regles)
+            (loop for regle in (getReglesPourBut but br) do
+              (setq listeRegles (append listeRegles (list (append regles (list regle)))))
+            )
+            (loop for regle in (getReglesPourBut but br) do
+              (setq listeRegles (append listeRegles (list (append (list regles) (list regle)))))
+            )
+          )
+        )
+      )
+      retour
+    )
+  )
+)
