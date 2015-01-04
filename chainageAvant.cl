@@ -10,7 +10,7 @@
       (loop while (and (not trouve) regle) do
         (if (premissesValideETBf (getPremisses regle) bf)
           (progn
-            (appliquerRegleBf regle bf)
+            (setq bf (appliquerRegleBf regle bf))
             (push regle chemin)
             (setq retourTmp (chainageAvant bf br but chemin))
             (if retourTmp

@@ -61,8 +61,9 @@
     (appliquerPremisseBf premisse bf)
   )
   (loop for conclusion in (getConclusions regle) do
-    (appliquerConclusionBf conclusion bf)
+    (setq bf (appliquerConclusionBf conclusion bf))
   )
+  bf
 )
 
 (defun appliquerPremisseBf (premisse bf)
@@ -73,8 +74,12 @@
 
 (defun appliquerConclusionBf (conclusion bf)
   (let ((fait (assoc (car conclusion) bf)))
-    (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
+    (if fait
+      (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
+      (push conclusion bf)
+    )
   )
+  bf
 )
 
 (defun appliquerRegleBut (regle but)
