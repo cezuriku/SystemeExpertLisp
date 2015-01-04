@@ -91,7 +91,7 @@
   (let ((fait (assoc (car conclusion) bf)))
     (if fait
       (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
-      (push (copy-tree conclusion) but)
+      (push (copy-tree conclusion) bf)
     )
   )
   bf
