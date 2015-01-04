@@ -3,3 +3,19 @@
 (load "chainageAvant.cl")
 (load "chainageArriere.cl")
 
+(defun systemeExpert (chainage bf br but)
+  (let (chemin)
+    (if (eq chainage 'AVANT)
+      (setq chemin (reverse (chainageAvant bf br but nil)))
+      (if (eq chainage 'ARRIERE)
+        (setq chemin (chainageArriere bf br but nil))
+        (print "Veuillez precisez un chainage entre 'Avant et 'Arriere")
+      )
+    )
+    (format T "Voici la recette pour faire : ~a~&" but)
+    (loop for regle in chemin do
+      (format T "~a~&" (getInstructions regle))
+    )
+    chemin
+  )
+)

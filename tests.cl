@@ -11,8 +11,6 @@
         (cremeAnglaise      0)    ; en millilitres
         (lait               1000) ; en millilitres
         (oeufs              9)    ; en unités
-        (oeufsBlancs        0)    ; en unités
-        (oeufsJaunes        0)    ; en unités
         (raisinsSecs        60)   ; en grammes
         (rhum               150)  ; en millilitres
         (sucre              100)  ; en grammes
@@ -108,5 +106,13 @@
       (print "Test 9-2 échoué : bf différent de TEST-2")
     )
     (format T "~&Resultat du chainageArriere : ~A" resultat)
+  )
+  (let ((bf (copy-tree TEST)) resultat)
+    (setq resultat (chainageAvant bf *br* '((ganacheAuChocolat 1)) nil))
+    (if resultat
+      (print "Test 10 reussi")
+      (print "Test 10 échoué : ganacheAuChocolat non faite")
+    )
+    (format T "~&Resultat du chainageAvant : ~A" resultat)
   )
 )
