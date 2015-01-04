@@ -76,3 +76,32 @@
     (setf (cadr fait) (+ (cadr fait) (cadr conclusion)))
   )
 )
+
+(defun appliquerRegleBut (regle but)
+  (loop for premisse in (getPremisses regle) do
+    (setq but (appliquerPremisseBut premisse but))
+  )
+  (loop for conclusion in (getConclusions regle) do
+    (setq but (appliquerConclusionBut conclusion but))
+  )
+  but
+)
+
+(defun appliquerPremisseBut (premisse but)
+  (let ((fait (assoc (car premisse) but)))
+    (if fait
+      (setf (cadr fait) (+ (cadr fait) (cadr premisse)))
+      (push premisse but)
+    )
+  )
+  but
+)
+
+(defun appliquerConclusionBut (conclusion but)
+  (let ((fait (assoc (car conclusion) but)))
+    (if fait
+      (setf (cadr fait) (- (cadr fait) (cadr conclusion)))
+    )
+  )
+  but
+)
