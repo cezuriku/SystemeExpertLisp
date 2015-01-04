@@ -1,5 +1,6 @@
 (load "outils.cl")
 (load "baseRegles.cl")
+(load "chainageAvant.cl")
 
 (let* (
     (bfTEST
@@ -68,5 +69,18 @@
       (print "Test 6-2 reussi")
       (print "Test 6-2 échoué : bf différent de bfTEST-2")
     )
+  )
+  (let ((bf (copy-tree bfTEST-2)) resultat)
+    (setq resultat (chainageAvant bf *br* '((oeufsBlancs 10)) nil))
+    (if (not resultat)
+      (print "Test 7-1 reussi")
+      (print "Test 7-1 échoué : bf non différent de bfTEST-1")
+    )
+    (setq resultat (chainageAvant bf *br* '((oeufsBlancs 3) (oeufsJaunes 4)) nil))
+    (if resultat
+      (print "Test 7-2 reussi")
+      (print "Test 7-2 échoué : bf différent de bfTEST-2")
+    )
+    (format T "~&Resultat du chainageAvant : ~A~&" resultat)
   )
 )

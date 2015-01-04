@@ -6,7 +6,7 @@
 (defparameter *r1* '(
   ((oeufsBlancs 1) (oeufsJaunes 1))
   ((oeufs 1))
-  "Cassez les oeufs en séparant le blanc du jaune"
+  "Cassez les oeufs en separant le blanc du jaune"
 ))
 
 (defparameter *r2* '(

@@ -39,7 +39,10 @@
 )
 
 (defun premisseValideBf (premisse bf)
-  (>= (getValeurBf (getAttribut premisse) bf) (getValeur premisse))
+  (if (getValeurBf (getAttribut premisse) bf)
+    (>= (getValeurBf (getAttribut premisse) bf) (getValeur premisse))
+    nil
+  )
 )
 
 (defun premissesValideETBf (premisses bf)
