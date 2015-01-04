@@ -8,6 +8,11 @@
   (car (eval regle))
 )
 
+(defun getInstructions (regle)
+  "Récupère les instructions d'une règle"
+  (caddr (eval regle))
+)
+
 (defun getAttribut (premisse)
   (car premisse)
 )

@@ -6,22 +6,26 @@
 (defparameter *r1* '(
   ((oeufsBlancs 1) (oeufsJaunes 1))
   ((oeufs 1))
+  "Cassez les oeufs en séparant le blanc du jaune"
 ))
 
 (defparameter *r2* '(
   ((cremeAnglaise 1365))
   ((lait 1000) (oeufsJaunes 6) (sucre 100) (rhum 150))
+  ""
 ))
 
 (defparameter *r3* '(
   ((ganacheAuChocolat 4))
   ((raisinsSecs 60) (chocolatTablette 450) (oeufsJaunes 3) (oeufsBlancs 5)
       (cremeFraiche 250) (cremeAnglaise 1365))
+  ""
 ))
 
 (defparameter *r4* '(
   ((desserts 1))
   ((ganacheAuChocolat 1))
+  ""
 ))
 
 (defparameter *br*
