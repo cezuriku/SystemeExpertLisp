@@ -142,7 +142,7 @@ validé par la base de fait"
   ; Pour chaque prémisse de la règle
   (loop for premisse in (getPremisses regle) do
     ; On applique la prémisse sur la base de fait
-    (appliquerPremisseBut premisse but)
+    (setq but (appliquerPremisseBut premisse but))
   )
   ; Pour chaque conclusion de la règle
   (loop for conclusion in (getConclusions regle) do

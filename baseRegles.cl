@@ -6,7 +6,7 @@
 ; On liste l'ensemble des règles dans une variable
 (defparameter *br*
   '(
-    *r1* *r2* *r3* *r4* *r5* *r6* *r7* *r8* *r9*
+    *r1* *r2* *r3* *r4* *r5* *r6* *r7* *r8* *r9* *r10*
   )
 )
 
@@ -42,7 +42,7 @@
 ))
 
 (defparameter *r6* '(
- ((plats 1))  
+ ((plats 1))
  ((baronDeLapin 1))
   "Pour un plat : Mettez votre baron de lapin a cote des plats."
 ))
@@ -54,13 +54,19 @@
 ))
 
 (defparameter *r8* '(
- ((entree 1))  
+ ((entrees 1))
  ((flanDeHuitres 1))
   "Pour une entree : Mettez votre flan d'huitres a cote des entrees."
-))     
-                     
+))
+
 (defparameter *r9* '(
-  ((menu 1))
-  ((flanDeHuitres 6) (baronDeLapin 1) (ganacheAuChocolat 1))  
+  ((menus 1))
+  ((flanDeHuitres 6) (baronDeLapin 1) (ganacheAuChocolat 1))
   "Pour faire un menu complet : Commencez par le flan de huitres en entrée, ensuite un baron de lapin pour le plat de résistance et utilisez une part de ganache au chocolat en dessert"
+))
+
+(defparameter *r10* '(
+  ((menus 1))
+  ((plats 1) (entrees 1) (desserts 1))
+  "Pour faire un menu complet : Commencez par l'entrée, ensuite un plat de résistance et enfin le dessert"
 ))

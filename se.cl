@@ -11,7 +11,7 @@ Si le but est atteint sans aucune règle alors elle renvoie T(true)."
   (let (chemin)
     ; Si l'on demande un chainageAvant on fait un chainageAvant
     (if (eq chainage 'AVANT)
-      (setq chemin (reverse (chainageAvant bf br but nil)))
+      (setq chemin (chainageAvant bf br but nil))
       ; Si l'on demande un chainageArriere on fait un chainageArriere
       (if (eq chainage 'ARRIERE)
         (setq chemin (chainageArriere bf br but nil))
@@ -28,6 +28,9 @@ Si le but est atteint sans aucune règle alors elle renvoie T(true)."
         (print "Impossible avec ce qu'il y a dans ton frigo")
         ; Sinon la recette est possible
         (progn
+          (if (eq chainage 'AVANT)
+            (setq chemin (reverse chemin))
+          )
           ; Et on l'affiche
           (format T "Voici la recette pour faire : ~a~&" but)
           (loop for regle in chemin do

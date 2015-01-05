@@ -63,7 +63,7 @@ d'obtenir le nombre minimum de règle pour atteindre le but."
     ; Sinon listeRegles récupère les règles permettant d'atteindre ou d'approcher
     ; le but et retour vaut nil
     (let (retour (listeRegles (getReglesPourBut butInitial br))
-            but regles but)
+            but regles)
       ; Tant que nous n'avons pas trouvé de solutions (not retour) et qu'il reste 
       ; au moins une une règle à tester
       (loop while (and listeRegles (not retour)) do
