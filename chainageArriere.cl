@@ -1,6 +1,6 @@
 (load "outils.cl")
 
-(defun chainageArriere (bf br butInitial chemin)
+(defun chainageArriere (bf br butInitial cheminInitial)
 "Cette fonction retourne l'ensemble des règles utilisées pour atteindre le but.
 Si le but est impossible à atteindre elle renvoie nil.
 Si le but est atteint sans aucune règle alors elle renvoie T(true).
@@ -11,11 +11,13 @@ plusieurs règles à la suite avant de revenir au départ."
   (if (premissesValideETBf butInitial bf)
     T
     ; Sinon
-    (let (retour retourTmp trouve (premisse (car butInitial)) (but (copy-tree butInitial)))
+    (let (retour retourTmp trouve (premisse (car butInitial)) but chemin)
       ; Tant que nous n'avons pas trouvé de solutions et qu'il reste au moins
       ; une prémisse du but à tester
       (loop while (and (not trouve) premisse) do
         ; On regarde si la prémisse à besoin d'un nombre positif de l'objet
+        (setq but (copy-tree butInitial))
+        (setq chemin (copy-tree cheminInitial))
         (if (> (getValeur premisse) 0)
           ; Dans ce cas pour chaque règle de la base de règle qui peut satisfaire
           ; partiellement ou entierement la prémisse alors
