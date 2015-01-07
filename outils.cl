@@ -29,7 +29,10 @@
   "Récupère la valeur de l'objet dans la base de faits"
   ; Par exemple si la base de faits possède 1 oeuf et qu'on demande oeuf alors
   ; elle retournera 1
-  (cadr (assoc attribut bf))
+  (if (null (assoc attribut bf))
+    0
+    (cadr (assoc attribut bf))
+  )
 )
 
 (defun getReglesPour (attribut br)
@@ -78,9 +81,9 @@
 (defun premisseValideBf (premisse bf)
 "Cette fonction permet de regarder si une prémisse est directement validé
 par la base de fait"
-  (if (getValeurBf (getAttribut premisse) bf)
+  (if (<= (getValeur premisse) 0)
+    T
     (>= (getValeurBf (getAttribut premisse) bf) (getValeur premisse))
-    nil
   )
 )
 

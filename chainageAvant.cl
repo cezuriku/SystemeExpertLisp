@@ -11,12 +11,13 @@ plusieurs règles à la suite avant de revenir au départ."
   (if (premissesValideETBf but bfInitiale)
     T
     ; Sinon
-    (let (retour retourTmp trouve (regle (car br)) (bf (copy-tree bfInitiale)))
+    (let (retour retourTmp trouve (regle (car br)) bf)
       ; Tant que nous n'avons pas trouvé de solutions et qu'il reste 
       ; au moins une une règle à tester
       (loop while (and (not trouve) regle) do
         ; Si l'on peut appliquer une règle
         ; c'est à dire que ses prémisses sont valides
+        (setq bf (copy-tree bfInitiale))
         (if (premissesValideETBf (getPremisses regle) bf)
           (progn
             ; On applique la règle
